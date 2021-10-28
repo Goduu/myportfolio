@@ -2,40 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import { createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import {
   Root,
   getHeader,
-  getDrawerSidebar,
-  getSidebarTrigger,
   getSidebarContent,
   getInsetContainer,
-  getInsetSidebar,
-  getCollapseBtn,
-  getContent,
   getFooter,
   getStandardScheme,
 } from '@mui-treasury/layout';
-import {
-  HeaderMockUp,
-  NavContentMockUp,
-  ContentMockUp,
-  FooterMockUp,
-} from '@mui-treasury/mockup/layout';
-import Box from '@material-ui/core/Box';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
-import { IconButton } from '@material-ui/core';
-import MainePainel from '../components/mainpainel/MainPainel';
+import { IconButton, Typography, useTheme } from '@material-ui/core';
+import Talesorstory from '../components/cards/Talesorstory';
+import StocksStudies from '../components/cards/StocksStudies';
+import Intro from '../components/Intro';
+import MyWork from '../components/MyWork';
 
 const Header = getHeader(styled);
-const DrawerSidebar = getDrawerSidebar(styled);
-const SidebarTrigger = getSidebarTrigger(styled);
-const SidebarContent = getSidebarContent(styled);
+const SidebarConent = getSidebarContent(styled);
 const InsetContainer = getInsetContainer(styled);
-const InsetSidebar = getInsetSidebar(styled);
-const CollapseBtn = getCollapseBtn(styled);
-const Content = getContent(styled);
 const Footer = getFooter(styled);
 
 const standardScheme = getStandardScheme();
@@ -64,10 +49,8 @@ standardScheme.configureInsetSidebar(builder => {
 });
 
 const DarkThemeDemo = () => {
-  // by default, Root will render ThemeProvider, pass "theme" to override default theme
-  // If you want to use your own ThemeProvider, pass "themeProvidedOmitted" to Root and wrapped it with your ThemeProvider
-  // note: If you set "themeProvidedOmitted=true" to Root without your own ThemeProvider, you will see error "cannot read palette of undefined"
   const [dark, setDark] = React.useState(true);
+  const theme = useTheme()
   return (
     <Root
       theme={createMuiTheme({ palette: { type: dark ? 'dark' : 'light' } })}
@@ -81,36 +64,9 @@ const DarkThemeDemo = () => {
           </IconButton>
         </Toolbar>
       </Header>
-      <DrawerSidebar sidebarId={'primarySidebar'}>
-        <SidebarContent>
-          <NavContentMockUp />
-        </SidebarContent>
-        <CollapseBtn edge={'start'} />
-      </DrawerSidebar>
-      <DrawerSidebar sidebarId={'secondary'}>
-        <SidebarContent>
-          <NavContentMockUp />
-        </SidebarContent>
-      </DrawerSidebar>
-      <Content>
-        <InsetContainer
-        // rightSidebar={
-          //   <InsetSidebar sidebarId={'tertiary'}>
-          //     <Box mt={5} />
-          //     <NavContentMockUp />
-          //   </InsetSidebar>
-          // }
-          >
-          <ContentMockUp />
-        </InsetContainer>
-          <InsetContainer>
+      <Intro />
+      <MyWork />
 
-          <MainePainel />
-          </InsetContainer>
-      </Content>
-      <Footer>
-        <FooterMockUp />
-      </Footer>
     </Root>
   );
 };
